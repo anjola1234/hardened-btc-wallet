@@ -55,7 +55,7 @@ advisory database via `cargo audit` (see `SECURITY.md`).
 
 ## Storage
 
-The mnemonic is never written to disk in plaintext. `wallet.dat` contains:
+The mnemonic is never written to disk in plaintext. `wallet_mainnet.dat` contains:
 `[16-byte salt][24-byte nonce][ciphertext]`, where the ciphertext is the mnemonic
 encrypted with XChaCha20-Poly1305 (authenticated -- tampering is detected, not
 silently accepted), using a key derived from your passphrase via Argon2id
