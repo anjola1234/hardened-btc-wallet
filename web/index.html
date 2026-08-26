@@ -1,0 +1,662 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Hardened BTC Wallet</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: Inter & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#121416",
+                    "surface-overlay": "#2a2e35",
+                    "surface-variant": "#333537",
+                    "surface-bright": "#37393b",
+                    "primary-fixed": "#ffdcbf",
+                    "on-primary-fixed-variant": "#6b3b00",
+                    "surface-dim": "#121416",
+                    "primary-container": "#f7931a",
+                    "on-secondary-container": "#afb6c1",
+                    "surface-raised": "#1c1f24",
+                    "on-primary": "#4b2800",
+                    "tertiary": "#bcc7de",
+                    "on-surface": "#e2e2e5",
+                    "surface-container-lowest": "#0c0e10",
+                    "on-secondary-fixed": "#151c24",
+                    "secondary-fixed": "#dce3ef",
+                    "outline-variant": "#554335",
+                    "secondary": "#c0c7d2",
+                    "primary": "#ffb874",
+                    "on-tertiary-fixed-variant": "#3c475a",
+                    "tertiary-fixed": "#d8e3fa",
+                    "primary-fixed-dim": "#ffb874",
+                    "tertiary-container": "#a1acc2",
+                    "outline": "#a38d7b",
+                    "on-background": "#e2e2e5",
+                    "surface-container-low": "#1a1c1e",
+                    "on-secondary-fixed-variant": "#404751",
+                    "surface-tint": "#ffb874",
+                    "on-error-container": "#ffdad6",
+                    "surface-container": "#1e2022",
+                    "text-primary": "#FFFFFF",
+                    "error": "#FF4D4D",
+                    "on-tertiary-container": "#354052",
+                    "on-tertiary": "#263142",
+                    "inverse-surface": "#e2e2e5",
+                    "on-secondary": "#2a313a",
+                    "error-container": "#93000a",
+                    "tertiary-fixed-dim": "#bcc7dd",
+                    "surface-container-highest": "#333537",
+                    "on-primary-container": "#603500",
+                    "secondary-container": "#404751",
+                    "secondary-fixed-dim": "#c0c7d2",
+                    "on-surface-variant": "#dbc2ae",
+                    "success": "#27C24C",
+                    "surface-container-high": "#282a2c",
+                    "on-error": "#690005",
+                    "on-primary-fixed": "#2d1600",
+                    "background": "#121416",
+                    "text-secondary": "#A0AEC0",
+                    "on-tertiary-fixed": "#111c2c",
+                    "surface-base": "#121417",
+                    "inverse-on-surface": "#2f3133",
+                    "inverse-primary": "#8c4f00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "space-sm": "16px",
+                    "gutter": "20px",
+                    "space-md": "24px",
+                    "space-lg": "48px",
+                    "space-xs": "8px",
+                    "unit": "4px",
+                    "container-max": "640px"
+            },
+            "fontFamily": {
+                    "headline-md": [
+                            "Inter"
+                    ],
+                    "display-lg": [
+                            "Inter"
+                    ],
+                    "body-base": [
+                            "Inter"
+                    ],
+                    "data-mono": [
+                            "JetBrains Mono"
+                    ],
+                    "label-caps": [
+                            "Inter"
+                    ],
+                    "body-sm": [
+                            "Inter"
+                    ],
+                    "display-lg-mobile": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "headline-md": [
+                            "20px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-base": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "data-mono": [
+                            "13px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600",
+                                    "textTransform": "uppercase"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        /* Hide scrollbar for clean aesthetic */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        body {
+            -ms-overflow-style: none;  
+            scrollbar-width: none;  
+        }
+
+        /* Amount field: remove browser spinner controls for a cleaner Stitch UI */
+        #sendAmount {
+          appearance: textfield;
+          -moz-appearance: textfield;
+        }
+
+        #sendAmount::-webkit-outer-spin-button,
+        #sendAmount::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        /* Keep the amount field aligned with the other Stitch inputs */
+        #sendAmount:focus {
+          outline: none;
+        }
+
+        /* Compact wallet output styling */
+        #walletOutput {
+          margin-top: -8px;
+        }
+
+        #walletOutput #status {
+          min-height: 16px;
+          line-height: 1.35;
+        }
+
+        #walletOutput #addressDisplay:empty,
+        #walletOutput #balanceDisplay:empty,
+        #walletOutput #balanceUsd:empty,
+        #walletOutput #addressBreakdown:empty {
+          display: none;
+        }
+
+        #walletOutput #addressBreakdown > div {
+          background: rgba(12, 14, 16, 0.55);
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          border-radius: 0.5rem;
+          padding: 9px 12px;
+          color: #a0aec0;
+          font-family: "JetBrains Mono", monospace;
+          font-size: 11px;
+          line-height: 1.45;
+          word-break: break-all;
+        }
+
+        #walletOutput #addressBreakdown > div + div {
+          margin-top: 0;
+        }
+
+        @media (max-width: 640px) {
+          #walletOutput {
+            margin-top: -4px;
+            padding: 14px;
+          }
+
+          #walletOutput #status {
+            max-width: 62%;
+          }
+        }
+
+        /* Material symbols base class */
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-base min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface-dim shadow-sm sticky top-0 z-40 w-full transition-transform">
+<div class="flex justify-between items-center w-full px-gutter py-4 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: &quot;FILL&quot; 1;">currency_bitcoin</span>
+                Hardened BTC Wallet
+            </div>
+<div class="flex gap-4">
+<button aria-label="Wallet Actions" class="text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-gutter pt-space-md pb-[120px] md:pb-space-lg flex flex-col gap-space-lg">
+<!-- Load Wallet Card -->
+<section class="bg-surface-raised rounded-xl p-space-md md:p-space-lg shadow-lg flex flex-col gap-space-md relative overflow-hidden group">
+<!-- Subtle ambient glow top right -->
+<div class="absolute -top-12 -right-12 w-32 h-32 bg-primary-container/5 rounded-full blur-3xl pointer-events-none transition-opacity group-hover:bg-primary-container/10"></div>
+<header class="flex items-center gap-3 border-b border-white/5 pb-4">
+
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Load Wallet</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Access your encrypted wallet file.</p>
+</div>
+</header>
+<div class="flex flex-col gap-space-sm mt-2">
+<!-- File Picker pseudo-element -->
+<div class="relative group cursor-pointer">
+<input aria-label="Select wallet file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" id="walletFile" type="file">
+<div class="w-full bg-surface-base border border-dashed border-white/20 rounded-lg px-4 py-6 flex flex-col items-center justify-center gap-2 text-on-surface-variant transition-colors group-hover:border-primary-container/50 group-hover:bg-surface-overlay/50">
+<span class="material-symbols-outlined text-[28px] opacity-70 group-hover:text-primary-container transition-colors">upload_file</span>
+<span class="font-body-sm text-body-sm text-center">Click to browse or drag encrypted file here</span>
+</div>
+</div>
+<!-- Passphrase Input -->
+<div class="relative">
+<label class="sr-only" for="passphrase">Passphrase</label>
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-on-surface-variant/50">
+<span class="material-symbols-outlined text-[18px]">key</span>
+</div>
+<input class="w-full bg-surface-base border border-white/10 rounded-lg pl-11 pr-4 py-3.5 text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-all font-body-base text-body-base placeholder-on-surface-variant/50" id="passphrase" placeholder="Wallet Passphrase" type="password">
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-start gap-2 bg-surface-base/50 p-3 rounded-lg border border-white/5">
+<span class="material-symbols-outlined text-[16px] mt-0.5 opacity-70">info</span>
+                    Balance scans all addresses within the wallet&nbsp;</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-space-sm mt-4">
+<button id="loadBtn" type="button" class="flex-1 bg-primary-container text-on-primary-container font-label-caps text-label-caps py-3.5 px-6 rounded-lg hover:opacity-90 hover:shadow-[0_0_20px_rgba(247,147,26,0.15)] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: &quot;FILL&quot; 1;">login</span>
+                    Load Wallet
+                </button>
+<button id="balanceBtn" type="button" disabled class="flex-1 bg-primary-container text-on-primary-container font-label-caps text-label-caps py-3.5 px-6 rounded-lg hover:opacity-90 hover:shadow-[0_0_20px_rgba(247,147,26,0.15)] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">search</span>
+                    Check Balance
+                </button>
+</div>
+</section>
+
+<!-- Wallet status & balance output: populated by the original wallet logic -->
+<section id="walletOutput" class="bg-surface-raised rounded-xl p-4 md:p-5 shadow-lg flex flex-col gap-3 relative overflow-hidden">
+  <div class="absolute -top-10 -right-10 w-28 h-28 bg-primary-container/5 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="flex items-center justify-between gap-3">
+    <div class="flex items-center gap-2 min-w-0">
+      
+      <span class="font-label-caps text-label-caps text-on-surface-variant">Wallet Status</span>
+    </div>
+    <span id="status" class="text-xs text-on-surface-variant text-right"></span>
+  </div>
+
+  <div id="walletDetails" class="flex flex-col gap-3">
+    <div class="bg-surface-base border border-white/5 rounded-lg px-4 py-3">
+      <div class="font-label-caps text-label-caps text-on-surface-variant mb-1">Primary Address</div>
+      <div id="addressDisplay" class="font-data-mono text-data-mono text-on-surface break-all"></div>
+    </div>
+
+    <div class="bg-surface-base border border-white/5 rounded-lg px-4 py-3">
+      <div class="font-label-caps text-label-caps text-on-surface-variant mb-1">Available Balance</div>
+      <div id="balanceDisplay" class="font-headline-md text-headline-md text-primary"></div>
+      <div id="balanceUsd" class="font-data-mono text-data-mono text-on-surface-variant mt-1"></div>
+    </div>
+
+    <div id="addressBreakdown" class="flex flex-col gap-2"></div>
+  </div>
+</section>
+
+<!-- Send Card -->
+<section class="bg-surface-raised rounded-xl p-space-md md:p-space-lg shadow-lg flex flex-col gap-space-md relative overflow-hidden group">
+<!-- Subtle ambient glow bottom left -->
+<div class="absolute -bottom-16 -left-16 w-40 h-40 bg-surface-overlay rounded-full blur-3xl pointer-events-none transition-opacity group-hover:bg-surface-overlay/80"></div>
+<header class="flex items-center gap-3 border-b border-white/5 pb-4 relative z-10">
+
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Send</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Create and sign an outgoing transaction.</p>
+</div>
+</header>
+<div class="flex flex-col gap-space-sm mt-2 relative z-10">
+<!-- Address Input -->
+<div class="relative">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 ml-1" for="address">Destination Address</label>
+<input autocomplete="off" class="w-full bg-surface-base border border-white/10 rounded-lg px-4 py-3.5 text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-all font-data-mono text-data-mono placeholder-on-surface-variant/40 break-all" id="destAddress" placeholder="bc1q..." spellcheck="false" type="text">
+</div>
+<!-- Amount Input -->
+<div class="relative">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 ml-1" for="amount">Amount</label>
+<div class="relative flex items-center">
+<input class="w-full bg-surface-base border border-white/10 rounded-lg pl-4 pr-16 py-3.5 text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-all font-data-mono text-data-mono placeholder-on-surface-variant/40 appearance-none" id="sendAmount" placeholder="0" type="number">
+<span class="absolute right-4 font-label-caps text-label-caps text-on-surface-variant pointer-events-none">SATS</span>
+</div>
+</div>
+</div>
+<button id="signBtn" type="button" disabled class="w-full mt-4 bg-primary-container text-on-primary-container font-label-caps text-label-caps py-4 px-6 rounded-lg hover:opacity-90 hover:shadow-[0_0_20px_rgba(247,147,26,0.15)] active:scale-[0.98] transition-all flex items-center justify-center gap-2 relative z-10">
+<span class="material-symbols-outlined text-[18px]">draw</span>
+                Build &amp; Sign Transaction
+            </button>
+
+<div id="txReview" style="display:none;" class="mt-4 p-4 bg-surface-base rounded-lg border border-primary-container/50">
+  <h3 class="text-primary font-headline-md text-headline-md mb-3">Review Signed Transaction</h3>
+  <pre id="txDetails" class="max-h-[270px] overflow-y-auto whitespace-pre-wrap break-all bg-black/30 rounded-lg p-3 text-xs"></pre>
+  <p class="text-xs text-error mt-3">This has NOT been broadcast yet. Verify the destination address carefully. This is REAL BTC.</p>
+  <button id="broadcastBtn" type="button" class="w-full mt-3 bg-error text-white font-label-caps text-label-caps py-3.5 px-6 rounded-lg hover:opacity-90 active:scale-[0.98] transition-all">
+    Broadcast Transaction
+  </button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full max-w-container-max mx-auto px-gutter mt-space-lg mb-20 md:mb-space-lg">
+
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-raised shadow-[0px_-8px_24px_rgba(0,0,0,0.4)] rounded-t-xl border-t-0">
+<!-- Active Tab: Wallet (as it represents the main view containing Load/Send here) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">account_balance_wallet</span>
+<span class="font-label-caps text-label-caps mt-1">Wallet</span>
+</a>
+<!-- Inactive Tabs -->
+<a class="flex flex-col items-center justify-center text-on-secondary-container hover:text-on-surface transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">send</span>
+<span class="font-label-caps text-label-caps mt-1">Send</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-secondary-container hover:text-on-surface transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">qr_code_2</span>
+<span class="font-label-caps text-label-caps mt-1">Receive</span>
+</a>
+</nav>
+
+
+
+<script type="module">
+    import init, {
+      wallet_address_from_bytes,
+      balance_from_utxos_json,
+      sign_transaction_multi,
+      derive_address_at
+    } from './pkg/wallet_web.js';
+
+    let wasmReady = false;
+    let currentAddress = null;
+    let cachedWalletBytes = null;
+    let cachedPassphrase = null;
+    let pendingSignedTxHex = null;
+
+    const API_BASE = 'https://blockstream.info/api';
+    const SCAN_GAP_LIMIT = 20;
+
+    async function setup() {
+      await init();
+      wasmReady = true;
+      document.getElementById('status').textContent = 'Ready.';
+    }
+    setup();
+
+    // Fetches the current BTC/USD price from a public, no-auth-required
+    // API (CoinGecko). Read-only, no wallet data is ever sent to this
+    // endpoint -- purely informational, doesn't affect any signing logic.
+    async function fetchBtcUsdPrice() {
+      const resp = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+      if (!resp.ok) throw new Error(`Price fetch failed: ${resp.status}`);
+      const data = await resp.json();
+      return data.bitcoin.usd;
+    }
+
+    async function fetchUtxosFor(address) {
+      const resp = await fetch(`${API_BASE}/address/${address}/utxo`);
+      if (!resp.ok) throw new Error(`UTXO fetch failed: ${resp.status}`);
+      return resp.json();
+    }
+
+    async function addressHasHistory(address) {
+      const resp = await fetch(`${API_BASE}/address/${address}`);
+      if (!resp.ok) throw new Error(`Address lookup failed: ${resp.status}`);
+      const info = await resp.json();
+      const chainCount = info.chain_stats?.tx_count ?? 0;
+      const mempoolCount = info.mempool_stats?.tx_count ?? 0;
+      return (chainCount + mempoolCount) > 0;
+    }
+
+    async function findUnusedAddress(walletBytes, passphrase, chainNum) {
+      for (let index = 0; index < 100; index++) {
+        const candidate = derive_address_at(walletBytes, passphrase, chainNum, index);
+        const hasHistory = await addressHasHistory(candidate);
+        if (!hasHistory) return { index, address: candidate };
+      }
+      throw new Error('No unused address found within gap limit.');
+    }
+
+    async function scanAllUtxos(walletBytes, passphrase) {
+      const sourced = [];
+      const breakdown = [];
+
+      for (const chainNum of [0, 1]) {
+        let consecutiveEmpty = 0;
+        for (let index = 0; index < SCAN_GAP_LIMIT && consecutiveEmpty < 3; index++) {
+          const address = derive_address_at(walletBytes, passphrase, chainNum, index);
+          const utxos = await fetchUtxosFor(address);
+
+          if (utxos.length === 0) {
+            consecutiveEmpty++;
+            continue;
+          }
+          consecutiveEmpty = 0;
+
+          const confirmedSats = balance_from_utxos_json(JSON.stringify(utxos));
+          if (confirmedSats > 0n) {
+            breakdown.push({ chain: chainNum, index, address, sats: confirmedSats });
+          }
+
+          for (const utxo of utxos) {
+            if (utxo.status.confirmed) {
+              sourced.push({ utxo, chain: chainNum, index });
+            }
+          }
+        }
+      }
+      return { sourced, breakdown };
+    }
+
+    document.getElementById('loadBtn').addEventListener('click', async () => {
+      const statusEl = document.getElementById('status');
+      const addressEl = document.getElementById('addressDisplay');
+      document.getElementById('balanceDisplay').textContent = '';
+      document.getElementById('balanceUsd').textContent = '';
+      document.getElementById('addressBreakdown').innerHTML = '';
+      document.getElementById('balanceBtn').disabled = true;
+      document.getElementById('signBtn').disabled = true;
+      currentAddress = null;
+
+      if (!wasmReady) { statusEl.textContent = 'WASM not ready yet, please wait.'; return; }
+
+      const fileInput = document.getElementById('walletFile');
+      const passphrase = document.getElementById('passphrase').value;
+
+      if (!fileInput.files.length) { statusEl.textContent = 'Please select a wallet file first.'; return; }
+      if (!passphrase) { statusEl.textContent = 'Please enter a passphrase.'; return; }
+
+      statusEl.textContent = 'Decrypting...';
+
+      try {
+        const file = fileInput.files[0];
+        const arrayBuffer = await file.arrayBuffer();
+        const walletBytes = new Uint8Array(arrayBuffer);
+
+        const address = wallet_address_from_bytes(walletBytes, passphrase);
+
+        currentAddress = address;
+        cachedWalletBytes = walletBytes;
+        cachedPassphrase = passphrase;
+
+        statusEl.textContent = 'Wallet loaded successfully.';
+        addressEl.textContent = address;
+        document.getElementById('balanceBtn').disabled = false;
+        document.getElementById('signBtn').disabled = false;
+      } catch (err) {
+        statusEl.textContent = 'Error: ' + err;
+      } finally {
+        document.getElementById('passphrase').value = '';
+      }
+    });
+
+    document.getElementById('balanceBtn').addEventListener('click', async () => {
+      const statusEl = document.getElementById('status');
+      const balanceEl = document.getElementById('balanceDisplay');
+      const balanceUsdEl = document.getElementById('balanceUsd');
+      const breakdownEl = document.getElementById('addressBreakdown');
+      if (!cachedWalletBytes || !cachedPassphrase) { statusEl.textContent = 'Load a wallet first.'; return; }
+
+      statusEl.textContent = 'Scanning addresses for balance...';
+      balanceEl.textContent = '';
+      balanceUsdEl.textContent = '';
+      breakdownEl.innerHTML = '';
+
+      try {
+        const [{ breakdown }, btcPrice] = await Promise.all([
+          scanAllUtxos(cachedWalletBytes, cachedPassphrase),
+          fetchBtcUsdPrice().catch(() => null), // price is informational only -- don't fail the whole balance check if it's unavailable
+        ]);
+        const totalSats = breakdown.reduce((sum, b) => sum + b.sats, 0n);
+
+        statusEl.textContent = `Balance updated (found funds on ${breakdown.length} address(es)).`;
+        balanceEl.textContent = totalSats.toLocaleString() + ' sats';
+
+        if (btcPrice !== null) {
+          const btcAmount = Number(totalSats) / 100_000_000;
+          const usdAmount = btcAmount * btcPrice;
+          balanceUsdEl.textContent = '≈ $' + usdAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' USD (at $' + btcPrice.toLocaleString() + '/BTC)';
+        } else {
+          balanceUsdEl.textContent = 'USD price unavailable right now.';
+        }
+
+        breakdownEl.innerHTML = breakdown.map(b =>
+          `<div>chain ${b.chain} index ${b.index}: ${b.sats.toLocaleString()} sats — ${b.address}</div>`
+        ).join('');
+      } catch (err) {
+        statusEl.textContent = 'Error: ' + err;
+      }
+    });
+
+    document.getElementById('signBtn').addEventListener('click', async () => {
+      const statusEl = document.getElementById('status');
+      const txReviewEl = document.getElementById('txReview');
+      const txDetailsEl = document.getElementById('txDetails');
+
+      if (!cachedWalletBytes || !cachedPassphrase) { statusEl.textContent = 'Load a wallet first.'; return; }
+
+      const destAddress = document.getElementById('destAddress').value.trim();
+      const amountInput = document.getElementById('sendAmount').value;
+
+      if (!destAddress) { statusEl.textContent = 'Please enter a destination address.'; return; }
+      if (!amountInput || Number(amountInput) <= 0) { statusEl.textContent = 'Please enter a valid amount in sats.'; return; }
+
+      const amountSats = BigInt(amountInput);
+
+      try {
+        statusEl.textContent = 'Scanning all wallet addresses for spendable funds...';
+        const { sourced } = await scanAllUtxos(cachedWalletBytes, cachedPassphrase);
+
+        if (sourced.length === 0) {
+          statusEl.textContent = 'No confirmed funds found on any address.';
+          return;
+        }
+
+        statusEl.textContent = 'Finding a fresh, unused change address...';
+        const change = await findUnusedAddress(cachedWalletBytes, cachedPassphrase, 1);
+
+        statusEl.textContent = 'Building and signing transaction...';
+        const sourcedJson = JSON.stringify(sourced);
+        const signedTxHex = sign_transaction_multi(
+          cachedWalletBytes, cachedPassphrase, sourcedJson, destAddress, amountSats, change.address
+        );
+
+        pendingSignedTxHex = signedTxHex;
+
+        const inputLines = sourced.map(s => `  - chain ${s.chain} index ${s.index}: ${s.utxo.value} sats`).join('\n');
+
+        txDetailsEl.textContent =
+          'Sending: ' + amountSats + ' sats\n' +
+          'To: ' + destAddress + '\n' +
+          'Spending from ' + sourced.length + ' input(s):\n' + inputLines + '\n' +
+          'Change to (chain 1, index ' + change.index + ', fresh): ' + change.address + '\n\n' +
+          'Raw signed tx hex:\n' + signedTxHex;
+
+        txReviewEl.style.display = 'block';
+        statusEl.textContent = 'Transaction signed. Review carefully before broadcasting.';
+      } catch (err) {
+        statusEl.textContent = 'Error: ' + err;
+      }
+    });
+
+    document.getElementById('broadcastBtn').addEventListener('click', async () => {
+      const statusEl = document.getElementById('status');
+      const resultEl = document.getElementById('broadcastResult');
+      if (!pendingSignedTxHex) { statusEl.textContent = 'No signed transaction to broadcast.'; return; }
+
+      const confirmed = window.confirm(
+        'This will broadcast a REAL Bitcoin mainnet transaction. This CANNOT be undone. Proceed?'
+      );
+      if (!confirmed) { statusEl.textContent = 'Broadcast cancelled.'; return; }
+
+      statusEl.textContent = 'Broadcasting...';
+
+      try {
+        const response = await fetch(`${API_BASE}/tx`, { method: 'POST', body: pendingSignedTxHex });
+        if (!response.ok) {
+          const errText = await response.text();
+          throw new Error(`Broadcast failed: ${response.status} ${errText}`);
+        }
+        const txid = (await response.text()).trim();
+        resultEl.innerHTML =
+          '✅ Broadcast successful.<br>Txid: ' + txid + '<br>' +
+          '<a href="https://mempool.space/tx/' + txid + '" target="_blank">View on explorer →</a>';
+        statusEl.textContent = 'Done.';
+        pendingSignedTxHex = null;
+        document.getElementById('txReview').style.display = 'none';
+      } catch (err) {
+        statusEl.textContent = 'Error: ' + err;
+      }
+    });
+  </script>
+<script>
+  const walletFile = document.getElementById('walletFile');
+  const filePickerText = walletFile?.parentElement?.querySelector('.font-body-sm.text-body-sm.text-center');
+  walletFile?.addEventListener('change', () => {
+    if (walletFile.files?.length && filePickerText) {
+      filePickerText.textContent = walletFile.files[0].name;
+    }
+  });
+</script>
+
+</body></html>
