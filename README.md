@@ -68,8 +68,7 @@ encrypted with XChaCha20-Poly1305 (authenticated -- tampering is detected, not
 silently accepted), using a key derived from your passphrase via Argon2id
 (64 MiB memory, 3 iterations, 4-way parallelism -- OWASP's recommended baseline).
 
-The encrypted file itself is not secret and is safe to share (e.g., with an adversary
-trying to hack this wallet) -- only the passphrase must stay secret. That said, the
+The encrypted file itself is not secret and is safe to share, only the passphrase must stay secret. That said, the
 encrypted wallet file is deliberately **not** committed to this repository (see
 `.gitignore`); it was shared directly and separately with the intended adversary for
 this specific bounty, keeping its exposure scoped rather than permanent and public.
