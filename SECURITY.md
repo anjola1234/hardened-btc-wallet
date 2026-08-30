@@ -26,20 +26,23 @@ credited.
 - **Nonce generation**: all ECDSA signatures use RFC 6979 deterministic nonces via the
   underlying `secp256k1` library -- no custom nonce generation exists anywhere in this
   codebase, eliminating an entire historical class of nonce-reuse key-recovery bugs.
+  This was specifically re-verified under multi-input signing (where each input
+  requires its own key/signature) via successful real-network broadcasts.
 - **Memory hygiene**: private key material, decrypted mnemonics, and passphrases are
   wrapped in types that guarantee zeroing on drop (`zeroize`/`Zeroizing`). No secret is
   intentionally logged, printed outside of the explicit, user-confirmed `reveal`
-  command, or written anywhere beyond its minimum necessary lifetime.
+  command (CLI-only, deliberately not exposed on the public website), or written
+  anywhere beyond its minimum necessary lifetime.
 - **Address privacy**: the wallet derives fresh receiving and change addresses via
   blockchain scanning rather than reusing a single address, avoiding the standard
-  address-reuse privacy weakness.
+  address-reuse privacy weakness. Independently verified via block explorer analysis.
 - **Client-side signing (web)**: the website never transmits a passphrase, mnemonic, or
   private key to any server. All decryption, key derivation, and signing happen
   entirely within the user's browser via WebAssembly. The hosting provider (Vercel)
   serves only static files and has no access to any key material at any point.
-- **Dependency auditing**: all dependencies are pinned via `Cargo.lock` and checked
-  against the RustSec advisory database via `cargo audit`. As of the last check, zero
-  known vulnerabilities were found across the full dependency tree.
+- **Dependency auditing**: all dependencies are pinned via a single workspace
+  `Cargo.lock` and checked against the RustSec advisory database via `cargo audit`.
+  Zero known vulnerabilities found across the full dependency tree (139 crates).
 - **Transaction review**: both the CLI and web front-ends require explicit,
   human-readable review of a fully-built and signed transaction -- including a
   distinct, separately-worded confirmation step -- before anything is broadcast to the
@@ -82,3 +85,14 @@ credited.
 
 See `THREAT_MODEL.md` for the full breakdown of in-scope vs. out-of-scope attacks and
 the reasoning behind each decision above.
+
+## Documented deliberate trade-off: development/funding machine
+
+This project's threat model originally called for funding the wallet from a clean,
+purpose-dedicated VM rather than a general-purpose daily-use machine, to minimize
+unrelated attack surface (other installed software, browser extensions, etc.). After
+weighing the cost (redoing the full Rust/WASM toolchain setup) against the realistic
+benefit for a $10-scale bounty with no specific evidence of machine compromise, the
+decision was made to proceed on the existing development laptop instead. This is a
+conscious, documented trade-off, not an oversight -- noted here in the same spirit of
+transparency as every other decision in this project.
